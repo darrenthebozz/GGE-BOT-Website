@@ -97,33 +97,76 @@ function Language({ languageCode, setLanguage }) {
 const assets = 
     JSON.parse(await (await fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/assets.json`)).text())
 
-function Resources({ __, openResources }) {
+function Resources({ __, openResources, languageCode }) {
     if(openResources == false)
         return <></>
-    console.log(openResources)
-    for (const key in openResources.resources) {
-        if(isNaN(Number(openResources.resources[key])) || Number(openResources.resources[key]) == 0)
-            delete openResources.resources[key]
+    const resources = openResources.resources
+    if(!resources)
+        return <></>
+    const nameOverrides = {
+        screws: "component1",
+        blackPowder: "component2",
+        saws: "component3",
+        drills: "component4",
+        crowbars: "component5",
+        leatherStrips: "component6",
+        chains: "component7",
+        metalPlates: "component8",
     }
-    delete openResources.resources["coins"]
-    delete openResources.resources["rubies"]
+    for (const key in nameOverrides) {
+        const value = resources[key]
+        resources[nameOverrides[key]] = value
+        delete resources[key]
+    }
+    for (const key in resources) {
+        if(isNaN(Number(openResources.resources[key])) || Number(resources[key]) == 0)
+            delete resources[key]
+        else {
+            resources[key] = new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(resources[key])
+        }
+    }
+    const skipOverrides = {
+        "1MinSkip": 1,
+        "5MinSkip": 5,
+        "10MinSkip": 10,
+        "30MinSkip": 30,
+        "5HourSkip": 5,
+        "24HourSkip": 24,
+    }
+    for (const key in skipOverrides) {
+        const value = skipOverrides[key]
+        if(resources[key])
+            resources[key] = `${value}x${resources[key]}`
+    }
+    delete resources["coins"]
+    delete resources["rubies"]
     function capitalizeFirstLetter(val) {
         return String(val).charAt(0).toLocaleUpperCase() + String(val).slice(1);
     }
     return (
         <Paper sx={{ overflow: 'auto' }}>
             <div onClick={e => e.stopPropagation()} style={{maxHeight:"80vh",maxWidth:"80vw",}}>
-                <Grid2 container spacing={3} margin={"32px"}>
+                <Grid2 container spacing={3} borderColor={"#323"} margin={"16px"}>
                     {
                         // openResources.resources
                         Object.entries(openResources.resources ?? {}).map(([key, value], i) => {
                             const jsonKey = capitalizeFirstLetter(key)
                             return <Grid2 key={i}>
-                                <img width="48px" height={"48px"} src={`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/default/assets/${assets[`Collectable_Currency_${jsonKey}`]}.webp`}></img>
-
-                                <Typography variant="subtitle1" component="div" align='center' padding={"10px"}>
-                                    {value}
-                                </Typography>
+                                <div style={{ 
+                                    justifyContent: "center", 
+                                    display: "flex", 
+                                    flexDirection:"column",  
+                                    alignItems:"center",
+                                    backgroundColor: "#211f1fff" }}>
+                                    <div style={{ maxHeight: "32px", maxWidth: "32px", overflowWrap: "break-word"}}>
+                                        <img onError={(e) => {
+                                            e.currentTarget.outerHTML = `<div style="overflow:hidden;max-height:100%;max-width:100%">${__(key)}</div>`
+                                        }} style={{ maxHeight: "100%", maxWidth: "100%"}} src={`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/default/assets/${assets[`Collectable_Currency_${jsonKey}`]}.webp`}></img>
+                                    </div>
+                                    <Typography variant="subtitle1" component="div" align='center' paddingTop={"16px"}>
+                                        {value}
+                                    </Typography>
+                                </div>
                             </Grid2>
                             })
                     }
@@ -323,7 +366,7 @@ export default function GGEUserTable({ setLanguage, __, languageCode, rows, user
                     handleResourcesClose()
                 }}
                 style={{ maxHeight: '100%', overflow: 'auto' }} >
-                <Resources usersStatus={usersStatus} __={__}  openResources={openResources}/>
+                <Resources usersStatus={usersStatus} __={__}  openResources={openResources} languageCode={languageCode}/>
             </Backdrop>
             <PlayerTable
                 setLanguage={setLanguage}
