@@ -21,7 +21,7 @@ import { Container } from '@mui/material'
 
 function PluginOption({ pluginData, channels, userPlugins, plugin, __ }) {
     userPlugins[plugin.key] ??= {}
-    const [value, setValue] = React.useState((userPlugins[plugin.key]?.[pluginData.key]) ?? pluginData.default)
+    const [value, setValue] = React.useState(userPlugins[plugin.key][pluginData.key] ?? pluginData.default)
 
     const onChange = value => {
         userPlugins[plugin.key][pluginData.key] = value
