@@ -117,7 +117,7 @@ function Resources({ __, openResources: resources, languageCode }) {
         delete resources[key]
     }
     for (const key in resources) {
-        if((isNaN(resources[key]) && typeof resources[key] != "string") || resources[key] == 0) 
+        if((isNaN(resources[key]) && typeof resources[key] != "string") || resources[key] == 0 || resources[key] == undefined) 
             delete resources[key]
         if (Number(resources[key])) {
             const skipOverrides = {
