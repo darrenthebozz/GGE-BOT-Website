@@ -18,6 +18,10 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import { Container } from '@mui/material'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+import dayjs from 'dayjs'
 
 function PluginOption({ pluginData, channels, userPlugins, plugin, __ }) {
     userPlugins[plugin.key] ??= {}
@@ -102,6 +106,14 @@ function PluginOption({ pluginData, channels, userPlugins, plugin, __ }) {
                 <Slider size="small" sx={{ flexGrow: 1 }} value={value} onChange={(_, newValue) => onChange(newValue)} />
                 <Typography variant="body2" sx={{ ml: 1, minWidth: '25px', fontSize: '0.75rem' }}>{`${value}%`}</Typography>
             </Box>
+        case "Time":
+            return <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <TimePicker
+                    label="Controlled picker"
+                    value={value ?? dayjs()}
+                    onChange={onChange}
+                />
+            </LocalizationProvider>
         default:
             return null
     }

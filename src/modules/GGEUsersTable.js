@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { ErrorType, ActionType, LogLevel } from "../types.js"
 import UserSettings from './userSettings'
 import settings from '../settings.json'
-import { Dialog, DialogContent, DialogTitle, Grid2 } from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, Grid } from '@mui/material'
 
 function Log({ ws, __ }) {
     const [currentLogs, setCurrentLogs] = React.useState([])
@@ -146,11 +146,11 @@ function Resources({ __, openResources: resources, languageCode }) {
     return (
         <Paper sx={{ overflow: 'auto' }}>
             <div onClick={e => e.stopPropagation()} style={{maxHeight:"80vh",maxWidth:"80vw",}}>
-                <Grid2 container spacing={3} borderColor={"#323"} margin={"16px"}>
+                <Grid container spacing={3} borderColor={"#323"} margin={"16px"}>
                     {
                         Object.entries(resources).map(([key, value], i) => {
                             const jsonKey = capitalizeFirstLetter(key)
-                            return <Grid2 key={i}>
+                            return <Grid key={i}>
                                 <div style={{ 
                                     justifyContent: "center", 
                                     display: "flex", 
@@ -166,10 +166,10 @@ function Resources({ __, openResources: resources, languageCode }) {
                                         {value}
                                     </Typography>
                                 </div>
-                            </Grid2>
+                            </Grid>
                             })
                     }
-                </Grid2>
+                </Grid>
             </div>
         </Paper>
     );
