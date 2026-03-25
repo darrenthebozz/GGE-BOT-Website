@@ -1,5 +1,5 @@
 #!/bin/sh
-touch .needsRebuild
+touch needsRebuild
 npm i
 npm run build
-rm -f .needsRebuild
+rm -f needsRebuild
