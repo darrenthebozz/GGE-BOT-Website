@@ -288,12 +288,14 @@ function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, cha
                                     setSelectedUser(row)
                                     setOpenSettings(true)
                                 }}>{__("settings")}</Button>
-                                <Button variant="contained"
+                                <Button
                                     onClick={() => {
                                         row.state = !state
                                         ws.send(JSON.stringify([ErrorType.Success, ActionType.SetUser, row]))
                                         setState(!state)
                                     }}
+                                    variant={state ? "contained" : "outlined"}
+                                    color={state ? "error" : "success" }
                                     style={{ maxWidth: '64px', maxHeight: '32px', minWidth: '32px', minHeight: '32px', marginLeft: "10px" }}>{state ? __("stop") : __("start")}</Button>
                             </TableCell>
                         </TableRow>)
