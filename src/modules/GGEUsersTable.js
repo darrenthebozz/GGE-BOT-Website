@@ -310,7 +310,7 @@ function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, cha
                     <TableCell align='right' padding='none' />
                     <TableCell align='right' padding='none' />
                     <TableCell align='right' padding='none'>
-                        <Button variant="contained" style={{ maxWidth: '64px', maxHeight: '32px', minWidth: '32px', minHeight: '32px', paddingLeft: "38px", paddingRight: "38px", margin: "10px" }} onClick={() => {
+                        <Button variant="outlined" style={{ maxWidth: '64px', maxHeight: '32px', minWidth: '32px', minHeight: '32px', paddingLeft: "38px", paddingRight: "38px", margin: "10px" }} onClick={() => {
                             ws.send(JSON.stringify([ErrorType.Success, ActionType.RemoveUser, rows.filter((e) => selected.includes(e.id))]))
                         }}>{__("remove")}</Button>
                     </TableCell>
