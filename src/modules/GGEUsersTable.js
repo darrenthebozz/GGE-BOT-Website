@@ -134,7 +134,7 @@ function Resources({ __, openResources: resources, languageCode }) {
                 "5MinSkip": 5,
                 "10MinSkip": 10,
                 "30MinSkip": 30,
-                "60MinSkip": 60,
+                "60MinSkip": 1,
                 "5HourSkip": 5,
                 "24HourSkip": 24,
             }
@@ -270,7 +270,7 @@ function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, cha
                                         
                                         return <Box key={index} sx={{ display: 'flex', flexDirection: "column" }} paddingRight={"10px"}>
                                             <Typography>{value > 0 ? __(key) : ""}</Typography>
-                                            <Typography>{value > 0 ? value : ""}</Typography>
+                                            <Typography>{value > 0 ? new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(value) : ""}</Typography>
                                         </Box>
                                     })
                                 }
