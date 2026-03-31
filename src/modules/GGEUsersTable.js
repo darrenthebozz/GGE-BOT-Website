@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { ErrorType, ActionType, LogLevel } from "../types.js"
 import UserSettings from './userSettings'
 import settings from '../settings.json'
-import { Dialog, DialogContent, DialogTitle, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 
 function Log({ ws, __ }) {
     const [currentLogs, setCurrentLogs] = React.useState([])
@@ -270,7 +270,7 @@ function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, cha
                                         
                                         return <Box key={index} sx={{ display: 'flex', flexDirection: "column" }} paddingRight={"10px"}>
                                             <Typography>{value > 0 ? __(key) : ""}</Typography>
-                                            <Typography>{value > 0 ? new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(value) : ""}</Typography>
+                                            <Typography>{value > 0 ? key == "attackDailyCount" ? value : new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(value) : ""}</Typography>
                                         </Box>
                                     })
                                 }
