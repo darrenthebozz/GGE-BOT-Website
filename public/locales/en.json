@@ -233,5 +233,6 @@
 	"attackForeign": "Attack Foreign Invasion",
 	"shutoffTimer": "Shutoff timer",
 	"sellStoredEquipment": "Sell stored equipment",
-	"upgradeStormForts": "Upgrade Storm Forts"
+	"upgradeStormForts": "Upgrade Storm Forts",
+	"gettingSpeedGlobalEffect": "Got effect"
 }
