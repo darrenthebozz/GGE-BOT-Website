@@ -8,6 +8,41 @@ import { ErrorType, GetErrorTypeName, ActionType, User } from "./types.js"
 import GGEUserTable from './modules/GGEUsersTable'
 import settings from './settings.json'
 
+async function getGGELanguageFile(lang) {
+  const languages = 
+    (await(await fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/config/languages/version.json`)).json()).languages
+
+  try {
+    var langFile = await (await fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/config/languages/${languages[lang]}/${lang}.json`)).json()
+  }
+  catch (e) {
+    console.warn(e)
+    if(lang == "en")
+      return
+
+    langFile = await (await fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/config/languages/${languages.en}/en.json`)).json()
+  }
+  return langFile
+}
+
+async function getSiteLanguageFile(lang) {
+  let langFile = {}
+  try {
+    langFile = await (await fetch(`//${window.location.hostname}:${window.location.port}/locales/en.json`)).json()
+  }
+  catch(e) {
+    console.error(e)
+  }
+  try {
+    Object.assign(langFile, await (await fetch(`//${window.location.hostname}:${window.location.port}/locales/${lang}.json`)).json())
+  }
+  catch (e) {
+    console.warn(e)
+  }
+
+  return langFile
+}
+
 function GrabAssets() {
   const [cookies, setCookie] = useCookies([])
   const [lang, setLang] = React.useState(false)
@@ -15,18 +50,15 @@ function GrabAssets() {
     setCookie("lang", cookies.lang = lang, { maxAge: 31536000 })
     
     try {
-      const fetches = await Promise.all([
-      new Promise(async (resolve) => {
-        const version = (await (await fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/config/languages/version.json`)).json()).languages[lang]
-        resolve(fetch(`//${window.location.hostname}:${settings.port ?? window.location.port}/ggeProxyEmpire5/config/languages/${version}/${lang}.json`))
-      }),
-      fetch(
-        `//${window.location.hostname}:${window.location.port}/locales/${lang}.json`)])
+
+      const langFiles = await Promise.all([
+        getGGELanguageFile(lang),
+        getSiteLanguageFile(lang)
+      ])
       const langFile = {}
-      for (let i = 0; i < fetches.length; i++) {
-        const response = fetches[i]
-        
-        Object.assign(langFile, await response.json())
+
+      for (let i = 0; i < langFiles.length; i++) {
+        Object.assign(langFile, langFiles[i])
       }
       setLang(langFile)
     }
