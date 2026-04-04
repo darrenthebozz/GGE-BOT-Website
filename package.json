@@ -39,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.13",
+    "baseline-browser-mapping": "^2.10.14",
     "shx": "^0.4.0"
   }
 }
