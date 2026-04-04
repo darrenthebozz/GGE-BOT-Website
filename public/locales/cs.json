@@ -76,7 +76,7 @@
 	"botConfigReloaded": "Config byl znovu načtený",
 	"closedReason": "Důvod násilného uzavření: ",
 	"timedOut": " Časový limit vypršel",
-	"errorCount": "Počet chyb: ",
+	"errorCount": "Počet chyb",
 	"hitCount": "Počet útoků: ",
 	"retryLogin": "Retry Login in: Opakovaný pokus o příhlašení za: ",
 	"retryLoginSeconds": " sekund",
