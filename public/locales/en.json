@@ -76,7 +76,7 @@
 	"botConfigReloaded": "Config has been reload",
 	"closedReason": "Closed forcefully reason: ",
 	"timedOut": " Timed out",
-	"errorCount": "Error Count: ",
+	"errorCount": "Error Count",
 	"hitCount": "Hit count: ",
 	"retryLogin": "Retry Login in: ",
 	"retryLoginSeconds": " seconds",

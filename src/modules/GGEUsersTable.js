@@ -140,9 +140,9 @@ function Resources({ __, openResources: resources, languageCode }) {
             resources[key] = `${value? `${value}x` : ""}${new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(resources[key])}`
         }
     }
-    function capitalizeFirstLetter(val) {
-        return String(val).charAt(0).toLocaleUpperCase() + String(val).slice(1);
-    }
+    const capitalizeFirstLetter = o =>
+         String(o).charAt(0).toLocaleUpperCase() + String(o).slice(1)
+    
     return (
         <Paper sx={{ overflow: 'auto' }}>
             <div onClick={e => e.stopPropagation()} style={{maxHeight:"80vh",maxWidth:"80vw",}}>
@@ -172,7 +172,7 @@ function Resources({ __, openResources: resources, languageCode }) {
                 </Grid>
             </div>
         </Paper>
-    );
+    )
 }
 function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, channelInfo, handleSettingsOpen, handleLogOpen, setSelectedUser, setOpenSettings, handleResourcesOpen }) {
     const [selected, setSelected] = React.useState([])

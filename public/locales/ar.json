@@ -92,7 +92,7 @@
 	"botConfigReloaded": "تم إعادة تحميل الإعدادات",
 	"closedReason": ":تم الإغلاق قسرا بسبب",
 	"timedOut": " انتهت مهلة الاتصال",
-	"errorCount": ":عدد الأخطاء ",
+	"errorCount": "عدد الأخطاء ",
 	"hitCount": ":عدد الضربات ",
 	"retryLogin": ":محاولة تسجيل الدخول مرة اخرى بعد ",
 	"retryLoginSeconds": " ثانية",
