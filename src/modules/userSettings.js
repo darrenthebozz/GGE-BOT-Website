@@ -50,6 +50,14 @@ for (var key in _instances) {
         instances.push({id: obj.getAttribute("value"),server,zone,instanceLocaId,instanceName})
 }
 
+instances.push({
+    id : 100 + 3,
+    server: "ep-live-mz-nw2-game.goodgamestudios.com",
+    zone: "EmpireExSP_3",
+    instanceLocaId : "SP",
+    instanceName : "3"
+})
+
 export default function UserSettings({ __, selectedUser, channels, plugins, ws, closeBackdrop }) {
     selectedUser.name ??= ""
     selectedUser.plugins ??= {}
