@@ -261,12 +261,12 @@ function PlayerTable({ setLanguage, __, languageCode, rows, usersStatus, ws, cha
                                 {getEnabledPlugins().map(__).join(" ")}
                             </TableCell>
                             <TableCell>
-                                <Box sx={{ display: 'flex' }}> {
+                                <Box sx={{ display: 'flex'}}> {
                                     Object.entries(status).map(([key, value], index) => {
                                         if (['id', 'hasError'].includes(key))
                                             value = undefined
                                         
-                                        return <Box key={index} sx={{ display: 'flex', flexDirection: "column" }} paddingRight={"10px"}>
+                                        return <Box key={index} sx={{ display: 'flex', flexDirection: "column", paddingRight: "10px" }}>
                                             <Typography>{value > 0 ? __(key) : ""}</Typography>
                                             <Typography>{value > 0 ? key == "attackDailyCount" ? value : new Intl.NumberFormat(languageCode, { notation: 'compact' }).format(value) : ""}</Typography>
                                         </Box>
