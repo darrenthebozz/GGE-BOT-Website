@@ -8,9 +8,9 @@
     "@mui/material": "^9.0.1",
     "@mui/x-date-pickers": "^9.3.0",
     "dayjs": "^1.11.21",
-    "react": "^19.2.6",
+    "react": "^19.2.7",
     "react-cookie": "^8.1.2",
-    "react-dom": "^19.2.6",
+    "react-dom": "^19.2.7",
     "react-scripts": "5.0.1",
     "reconnecting-websocket": "^4.4.0"
   },
@@ -39,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.32",
+    "baseline-browser-mapping": "^2.10.33",
     "shx": "^0.4.0"
   }
 }
