@@ -4,18 +4,15 @@
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^9.1.0",
-    "@mui/material": "^9.1.0",
-    "@mui/x-date-pickers": "^9.4.0",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
+    "@mui/x-date-pickers": "^9.3.0",
     "dayjs": "^1.11.21",
-    "mui": "^0.0.1",
-    "react": "^19.2.7",
+    "react": "^19.2.6",
     "react-cookie": "^8.1.2",
-    "react-dom": "^19.2.7",
+    "react-dom": "^19.2.6",
     "react-scripts": "5.0.1",
-    "react-transition-group": "^4.4.5",
-    "reconnecting-websocket": "^4.4.0",
-    "update": "^0.7.4"
+    "reconnecting-websocket": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.35",
+    "baseline-browser-mapping": "^2.10.32",
     "shx": "^0.4.0"
   }
 }
